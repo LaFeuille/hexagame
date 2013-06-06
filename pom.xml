@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- The Basics -->
+	<groupId>org.lafeuille.hexagame</groupId>
+	<artifactId>hexagame</artifactId>
+	<version>0.1.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>hexagame-api</module>
+		<module>hexagame-ejb</module>
+		<module>hexagame-appclient</module>
+		<module>hexagame-applet</module>
+		<module>hexagame-web</module>
+		<module>hexagame-ear</module>
+	</modules>
+
+	<properties>
+		<java.level>1.7</java.level>
+		<javaee.ejb.version>3.1</javaee.ejb.version>
+		<org.apache.maven.plugins.assembly.version>2.4</org.apache.maven.plugins.assembly.version>
+		<org.apache.maven.plugins.clean.version>2.5</org.apache.maven.plugins.clean.version>
+		<org.apache.maven.plugins.compiler.version>3.1</org.apache.maven.plugins.compiler.version>
+		<org.apache.maven.plugins.deploy.version>2.7</org.apache.maven.plugins.deploy.version>
+		<org.apache.maven.plugins.ear.version>2.8</org.apache.maven.plugins.ear.version>
+		<org.apache.maven.plugins.ejb.version>2.3</org.apache.maven.plugins.ejb.version>
+		<org.apache.maven.plugins.install.version>2.4</org.apache.maven.plugins.install.version>
+		<org.apache.maven.plugins.jar.version>2.4</org.apache.maven.plugins.jar.version>
+		<org.apache.maven.plugins.release.version>2.4.1</org.apache.maven.plugins.release.version>
+		<org.apache.maven.plugins.resources.version>2.6</org.apache.maven.plugins.resources.version>
+		<org.apache.maven.plugins.site.version>3.2</org.apache.maven.plugins.site.version>
+		<org.apache.maven.plugins.source.version>2.2.1</org.apache.maven.plugins.source.version>
+		<org.apache.maven.plugins.surefire.version>2.14</org.apache.maven.plugins.surefire.version>
+		<org.apache.maven.plugins.war.version>2.3</org.apache.maven.plugins.war.version>
+		<org.apache.maven.version>2.2.1</org.apache.maven.version>
+		<org.apache.maven.wagon.ftp.version>2.2</org.apache.maven.wagon.ftp.version>
+		<org.dbunit.version>2.4.9</org.dbunit.version>
+		<org.glassfish.version>3.1</org.glassfish.version>
+		<org.glassfish.embedded.version>3.1.1</org.glassfish.embedded.version>
+		<org.junit.version>4.10</org.junit.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<prerequisites>
+		<maven>${org.apache.maven.version}</maven>
+	</prerequisites>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.dbunit</groupId>
+				<artifactId>dbunit</artifactId>
+				<version>${org.dbunit.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.lafeuille.hexagame</groupId>
+				<artifactId>hexagame-api</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.lafeuille.hexagame</groupId>
+				<artifactId>hexagame-appclient</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.lafeuille.hexagame</groupId>
+				<artifactId>hexagame-applet</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.lafeuille.hexagame</groupId>
+				<artifactId>hexagame-ejb</artifactId>
+				<type>ejb</type>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.lafeuille.hexagame</groupId>
+				<artifactId>hexagame-web</artifactId>
+				<type>war</type>
+				<version>${project.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<!-- Project Information -->
+	<name>Hexagame</name>
+	<description />
+	<url />
+	<inceptionYear>2013</inceptionYear>
+	<licenses />
+	<developers>
+		<developer>
+			<id>olemerdy</id>
+			<email>olivier.lemerdy@gmail.com</email>
+			<name>Olivier Le Merdy</name>
+			<timezone>+1</timezone>
+		</developer>
+	</developers>
+	<contributors />
+	<organization>
+		<name>LaFeuille.org</name>
+		<url>http://lafeuille.org</url>
+	</organization>
+
+	<!-- Build Settings -->
+	<build>
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ftp</artifactId>
+				<version>${org.apache.maven.wagon.ftp.version}</version>
+			</extension>
+		</extensions>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<version>${org.apache.maven.plugins.assembly.version}</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-clean-plugin</artifactId>
+					<version>${org.apache.maven.plugins.clean.version}</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${org.apache.maven.plugins.compiler.version}</version>
+					<configuration>
+						<source>${java.level}</source>
+						<target>${java.level}</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>${org.apache.maven.plugins.deploy.version}</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-ear-plugin</artifactId>
+					<version>${org.apache.maven.plugins.ear.version}</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-ejb-plugin</artifactId>
+					<version>${org.apache.maven.plugins.ejb.version}</version>
+					<configuration>
+						<ejbVersion>${javaee.ejb.version}</ejbVersion>
+					</configuration>
+				</plugin>
+				<plugin>
+					<artifactId>maven-install-plugin</artifactId>
+					<version>${org.apache.maven.plugins.install.version}</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>${org.apache.maven.plugins.jar.version}</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>${org.apache.maven.plugins.release.version}</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>${org.apache.maven.plugins.resources.version}</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-site-plugin</artifactId>
+					<version>${org.apache.maven.plugins.site.version}</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>${org.apache.maven.plugins.source.version}</version>
+					<executions>
+						<execution>
+							<id>attach-sources</id>
+							<goals>
+								<goal>jar</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>${org.apache.maven.plugins.surefire.version}</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>${org.apache.maven.plugins.war.version}</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+	<distributionManagement>
+		<downloadUrl>https://lafeuille.org/mvnrepository</downloadUrl>
+		<repository>
+			<id>lafeuille-repository</id>
+			<url>ftp://private.lafeuille.org/web/mvnrepository</url>
+		</repository>
+	</distributionManagement>
+	<reporting />
+	<scm>
+		<connection>scm:git:git://github.com/LaFeuille/hexagame.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/LaFeuille/hexagame.git</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
+
+	<!-- Environment Settings -->
+	<repositories />
+	<pluginRepositories />
+	<profiles>
+		<profile>
+			<id>glassfish</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<dependencyManagement>
+				<dependencies>
+					<dependency>
+						<groupId>org.glassfish.extras</groupId>
+						<artifactId>glassfish-embedded-all</artifactId>
+						<version>${org.glassfish.version}</version>
+						<scope>provided</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.glassfish.extras</groupId>
+						<artifactId>glassfish-embedded-web</artifactId>
+						<version>${org.glassfish.version}</version>
+						<scope>provided</scope>
+					</dependency>
+				</dependencies>
+			</dependencyManagement>
+			<dependencies>
+				<dependency>
+					<groupId>org.glassfish.extras</groupId>
+					<artifactId>glassfish-embedded-all</artifactId>
+				</dependency>
+			</dependencies>
+			<repositories>
+				<repository>
+					<id>glassfish-java-net</id>
+					<url>http://download.java.net/maven/glassfish/</url>
+				</repository>
+			</repositories>
+		</profile>
+	</profiles>
+
+</project>
